@@ -1,0 +1,120 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color:darkblue;
+}
+h1, .label-requester {
+  color: white;
+  font-size: 40px;
+}
+
+table {
+  width: 100%;
+}
+
+
+.label-requester, .input-requester,textarea, .td-main, .td-main-req {
+  font-size: 50px;
+}
+
+
+a {
+  color: #00B7FF;
+}
+
+.input-button-requester, .input-button-check {
+  padding: 5px;
+}
+
+.input-button-requester:hover, .input-button-check:hover {
+  background-color: greenyellow;
+}
+
+.input-requester {
+  width: 10%;
+}
+.input-receiver {
+  width: 30px
+}
+textarea {
+  width: 660px;
+}
+
+.input-button-requester, .input-button-check, textarea {
+  border-radius: 15px;
+
+}
+.input-button-requester {
+  font-size: 40px;
+}
+
+.div-list-req-pend, .div-list-req-atend, .div-circle-atend, .div-circle-pend {
+  display: inline-block;
+}
+
+.circle-pend, .div-circle-atend {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.circle-pend {
+  background-color: red;
+  animation: animate 1.5s linear infinite;
+}
+
+.div-circle-atend {
+  background-color: green;
+}
+
+.div-list-req  {
+  background-color: whitesmoke;
+  border-radius: 10px;
+  
+}
+
+.div-requester {
+  border:#00B7FF
+  
+}
+
+@keyframes animate {
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 0.7;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.flex-container {
+  display: flex;
+  background-color: aliceblue;
+  width: 100%;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+
+}
+.flex-container > .div-container {
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+.flex-container > .msg {
+  width: 30%;
+  word-wrap: break-word;
+  
+}
+.flex-container > .circle-pend {
+  font-size: 10px;
+  height: 10px;
+  width: 10px;
+}
+.flex-container > .id-req {
+  align-self: flex-start;
+}

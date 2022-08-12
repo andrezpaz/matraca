@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lista de Requisições</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/client.js"></script>
+  </head>
+  <body onload="startCounter()">
+    <audio id="audioBell" src="/images/bell.wav" preload="auto"></audio>
+    <a href="javascript:play_single_audio();">play</a>
+    <script type="text/javascript">
+      function play_single_audio() {
+        document.getElementById('audioBell').play();
+      }
+      function startCounter() {
+        let counter = document.querySelectorAll(".td-timer-req");
+        counter.forEach((element)=>{
+          let time = element.innerHTML; 
+          let interval; 
+          let i = time; 
+          interval = setInterval(function() {
+            element.innerHTML= i++;
+          },1000)
+        })
+      }
+    </script>
+    <h1>Lista de Requisições</h1>
+    <%
+    data.filter((element) => {
+      if (!element.checked) { %>
+          <div class="div-list-req">
+          <div class="div-circle-pend"></div>
+          <div class="div-list-req-pend">
+            <form method="post" action="/checkReq/"<%=element.id%> >
+            <table>
+                <tr>
+                  <td class="td-main">Requisitante:</td>
+                  <td class="td-main-req"><%= element.requester %></td>
+                  <td class="td-date-req">Data Solic.: <%=new Date(element.createdAt).toLocaleString('pt-BR')%></td>
+                  <td class="td-timer-req"><%=functions.getTimeWait(element.createdAt)%></td>
+                  <td><input class="input-receiver" name="idReq" readonly="true" value="<%=element.id%>"></td>
+                </tr>
+              <tr>
+                <td colspan="4" class="td-main"> <%= element.msg %>  </td>
+                <td><input type="submit" class="input-button-check" value="Atender"></td>
+              </tr>
+              
+            </table>
+          </form>
+          </div>
+        </div><br>
+        <% } }) %>
+        <h1>Atendidas</h1>
+        <%
+    data.filter((element)=>{
+       if (element.checked) { 
+        console.log(element)
+        %>
+        <div class="div-list-req">
+          <div class="div-circle-atend"></div>
+          <div class="div-list-req-atend">
+            <table>
+              <tr>
+                <td>Requisitante: <%= element.requester%></td>
+              </tr> 
+              <tr>
+                <td> <%= element.msg %></td>
+              </tr>
+            </table>
+          </div>
+        </div><br>
+        <% } }) %>
+      <br>
+    
+  </body>
+</html>

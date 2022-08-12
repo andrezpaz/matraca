@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lista de Requisições</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <% 
+    %>
+    <h1>Lista de Solicitações - Máquina <%= data.requester %></h1>
+    <div class="div-requester">
+      <form method="post" action="/sendToReceiver">
+        <label class="label-requester" for="requester">Solicitante:</label><br>
+        <input class="input-requester" readonly="true" name="requester" type="text" id="requester" value="<%=data.requester%>"><br>
+        <label class="label-requester" for="msgRequester">Mensagem:</label><br>
+        <textarea name="msg" id="msgRequester" rows="3" cols="50"></textarea><br>
+        <input class="input-button-requester" type="submit" value="Enviar">
+      </form>   
+    </div>
+    
+  </body>
+</html>

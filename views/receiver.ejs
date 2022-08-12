@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lista de Requisições</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/client.js"></script>
+  </head>
+  <body onload="startCounter()">
+    <audio id="audioBell" src="/images/bell.wav" preload="auto"></audio>
+    <a href="javascript:play_single_audio();">play</a>
+    <script type="text/javascript">
+      function play_single_audio() {
+        document.getElementById('audioBell').play();
+      }
+      function startCounter() {
+        let counter = document.querySelectorAll(".timer-req");
+        counter.forEach((element)=>{
+          let hours = element.children[0];
+          let minutes = element.children[1];
+          let seconds = element.children[2];
+          let time = element.children[2].innerHTML;
+          let interval; 
+          //let i = time; 
+          interval = setInterval(function() {
+            //element.innerHTML= i++;
+            //time = i++;
+            ++time;
+            let hour = pad(parseInt(time/3600));
+            hours.innerHTML = hour
+            minutes.innerHTML = pad(parseInt( (time -hour*3600)/60)); 
+            seconds.innerHTML = pad(time % 60);
+            
+          },1000)
+        })
+      }
+      function pad(val) {
+        var valString = val + "";
+        if (valString.length < 2) {
+          return "0" + valString;
+        } else {
+          return valString;
+        }
+      }
+    </script>
+    <h1>Lista de Requisições</h1>
+    <%
+    data.filter((element) => {
+      if (!element.checked) { %>
+        <form method="post" action="/checkReq/"<%=element.id%> >
+          <div class="flex-container">
+            <div class="div-container circle-pend"></div>
+            <div class="div-container requerente">
+              <div>Requeren: <%=element.requester%></div>
+              <div>Data Soli.: <%=new Date(element.createdAt).toLocaleString('pt-BR')%></div>
+            </div>
+            <div class="div-container msg"><%=element.msg%></div>
+            <div class="div-container">
+              <div class="id-req"><input class="input-receiver" name="idReq" readonly="true" value="<%=element.id%>"></div>
+              <div class="timer-req">
+                <label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds"><%=functions.getTimeWait(element.createdAt)%></label>
+              </div>
+              <div class="button"><input type="submit" class="input-button-check" value="Atender"></div>
+            </div>
+          </div>
+        </form>
+        <br>
+        <% } }) %>
+        <h1>Atendidas</h1>
+        <%
+        let listChecked = data.filter((elem) => (elem.checked) )
+        let sortListChecked = listChecked.sort(function (a,b) {
+          if (new Date(a.updatedAt) < new Date(b.updatedAt)) {
+            return 1;
+          }
+          if (new Date(a.updatedAt) > new Date(b.updatedAt)) {
+            return -1;
+          } 
+          return 0;
+        })
+        sortListChecked.length = 5;
+        sortListChecked.map((element) => { 
+        %>
+        <div class="div-list-req">
+          <div class="div-circle-atend"></div>
+          <div class="div-list-req-atend">
+            <table>
+              <tr>
+                <td>Requisitante: <%= element.requester%></td>
+              </tr> 
+              <tr>
+                <td> <%= element.msg %></td>
+              </tr>
+              <tr>
+                <td> <%= element.id %></td>
+              </tr>
+              <tr>
+                <td> <%= element.updatedAt%></td>
+              </tr>
+            </table>
+          </div>
+        </div><br>
+        <%  }) %>
+      <br>
+    
+  </body>
+</html>
