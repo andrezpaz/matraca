@@ -15,6 +15,16 @@ router.get ('/', async (req,res) => {
   })
 })
 
+//All posts queue emails
+router.get ('/emailQueue', async (req,res) => {
+    await post.getPostsEmail()
+.then(posts => res.json(posts) )
+.catch(err => {
+  if (err.status) res.status(err.status.json({ message: err.message}))
+    else res.status(500).json({ message: err.message})
+  })
+})
+
 //post by id
 router.get('/:id', m.mustBeInteger, async (req, res) => {
     const id= req.params.id
@@ -30,11 +40,35 @@ router.get('/:id', m.mustBeInteger, async (req, res) => {
     })
 })
 
+//post by requester
+router.get('/listRequester/:requester', async(req, res) =>{
+    const requester = req.params.requester;
+    await post.getPostsRequester(requester)
+    .then( posts => res.json(posts))
+    .catch(err => {
+        if (err.status) {
+            res.status(err.status).json({message: err.message})
+        } else {
+            res.status(500).json({message: err.message})
+        }
+    })
+})
+
 //insert new post
 router.post('/', m.checkFieldsPost, async (req, res) => {
     await post.insertPost(req.body)
     .then( post => res.status(201).json({
         message: `The post #${post.id} has been created`,
+        content: post
+    }))
+    .catch( err => res.status(500).json({ message: err.message}))
+})
+
+//inser new post to queue email
+router.post('/email', m.checkFieldsPost, async (req, res) => {
+    await post.insertPostEmail(req.body)
+    .then( post => res.status(201).json({
+        message: `the post #${post.id} has been add to queue email`,
         content: post
     }))
     .catch( err => res.status(500).json({ message: err.message}))

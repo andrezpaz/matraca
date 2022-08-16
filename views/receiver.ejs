@@ -12,6 +12,11 @@
       function play_single_audio() {
         document.getElementById('audioBell').play();
       }
+      function refreshPage()
+      {
+        window.location = window.location.href;
+      }
+    setInterval('refreshPage()', 30000);
       function startCounter() {
         let counter = document.querySelectorAll(".timer-req");
         counter.forEach((element)=>{
@@ -20,10 +25,7 @@
           let seconds = element.children[2];
           let time = element.children[2].innerHTML;
           let interval; 
-          //let i = time; 
           interval = setInterval(function() {
-            //element.innerHTML= i++;
-            //time = i++;
             ++time;
             let hour = pad(parseInt(time/3600));
             hours.innerHTML = hour
@@ -32,6 +34,12 @@
             
           },1000)
         })
+        //play sound
+        let existsPend = document.getElementsByClassName("div-container circle-pend");
+        if (existsPend[0]) {
+          console.log("Pend Found, playing de sound...");
+          play_single_audio()
+        }
       }
       function pad(val) {
         var valString = val + "";

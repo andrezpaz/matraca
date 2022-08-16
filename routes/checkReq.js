@@ -15,11 +15,11 @@ router.post('/', function (req, res){
     checked: true
   })
   .then(posts =>{
-    res.redirect(`http://localhost:3000/receiver`);
+    res.redirect(`/receiver`);
   })
   .catch( error => {
     console.error(error)
-    res.redirect(`http://localhost:3000/receiver`);
+    res.redirect(`/receiver`);
   })
 });
 

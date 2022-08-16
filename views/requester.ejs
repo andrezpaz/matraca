@@ -5,9 +5,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <% 
-    %>
-    <h1>Lista de Solicitações - Máquina <%= data.requester %></h1>
+    <h1>Interfone Online - Máquina <%= data.requester %></h1>
     <div class="div-requester">
       <form method="post" action="/sendToReceiver">
         <label class="label-requester" for="requester">Solicitante:</label><br>
@@ -17,6 +15,34 @@
         <input class="input-button-requester" type="submit" value="Enviar">
       </form>   
     </div>
-    
+
+    <div class="box-list-requester">
+      <button onclick="javascript:window.location.reload()">Atualizar Lista</button>
+      <h2>Liste de Solicitações</h2>
+    <% data.listReq.forEach((element)=> {
+      let colorDiv;
+      if (!element.checked) {
+        console.log(element);
+        colorDiv = "red" 
+      } 
+        else {
+        colorDiv = "green"
+        } %>
+      <div style="background-color: <%=colorDiv%>;" class="div-list-req">  
+      <table>
+        <tr>
+          <td>Mensagem: <%=element.msg%></td>
+        </tr> 
+        <tr>
+          <td>ID: <%=element.msg%> </td>
+          <td>Data Solic.: <%=new Date(element.createdAt).toLocaleString('pt-BR')%></td>
+          <td>Data Atend.: <%=new Date(element.updatedAt).toLocaleString('pt-BR')%></td>
+          <td>Tempo Ated.:</td>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <% }) %>
+  </div>
   </body>
 </html>

@@ -7,16 +7,15 @@ router.get('/', function (req, res, nex) {
   res.send('d')
 })
 router.post('/', function (req, res){
-  let requester = req.body.requester;
+  let destination = req.body.destination;
   let msg = req.body.msg;
   axios
-  .post('http://localhost:3000/api/v1/postEmail', {
-    requester:requester,
-    msg: msg,
-    checked: false
+  .post('http://localhost:3000/api/v1/posts/email', {
+    destination:destination,
+    msg: msg
   })
   .then(posts =>{
-    res.redirect(`http://localhost:3000/requester/${requester}`);
+    res.redirect(`/requesterPublic`);
   })
   .catch( error => {
     console.error(error)

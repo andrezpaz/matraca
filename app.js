@@ -14,6 +14,8 @@ var requester = require('./routes/requester');
 var sendToReceiver = require('./routes/sendToReceiver');
 var checkReq = require('./routes/checkReq');
 var requesterPublic = require('./routes/requesterPublic');
+var sendToQueue = require('./routes/sendToQueue');
+var listQueueEmails = require('./routes/listQueueEmails');
 
 var app = express();
 
@@ -37,6 +39,8 @@ app.use('/requester', requester);
 app.use('/sendToReceiver', sendToReceiver);
 app.use('/checkReq', checkReq);
 app.use('/requesterPublic', requesterPublic);
+app.use('/sendToQueue', sendToQueue);
+app.use('/listQueueEmails', listQueueEmails);
 
 //app.post('/sendToReceiver', function (req, res){
 //  console.log(req.body);

@@ -16,7 +16,7 @@ router.post('/', function (req, res){
     checked: false
   })
   .then(posts =>{
-    res.redirect(`http://localhost:3000/requester/${requester}`);
+    res.redirect(`/requester/${requester}`);
   })
   .catch( error => {
     console.error(error)

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fila de emails</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/client.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+    </script>
+    <h1>Fila de emails</h1>
+        <table>
+          <th>Destino</th>
+          <th>Mensagem</th>
+          <th>Data</th>  
+            <%data.forEach((element) => { %>
+              <tr>
+                <td><%= element.destination%></td>
+                <td><%= element.msg %></td>
+                <td><%= element.createdAt %></td>
+              </tr>
+            <%  }) %>
+        </table>
+      <br>
+    
+  </body>
+</html>
