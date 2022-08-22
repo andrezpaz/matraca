@@ -12,49 +12,14 @@
       function play_single_audio() {
         document.getElementById('audioBell').play();
       }
-      function refreshPage()
-      {
-        window.location = window.location.href;
-      }
+    //Refresh page
     setInterval('refreshPage()', 30000);
-      function startCounter() {
-        let counter = document.querySelectorAll(".timer-req");
-        counter.forEach((element)=>{
-          let hours = element.children[0];
-          let minutes = element.children[1];
-          let seconds = element.children[2];
-          let time = element.children[2].innerHTML;
-          let interval; 
-          interval = setInterval(function() {
-            ++time;
-            let hour = pad(parseInt(time/3600));
-            hours.innerHTML = hour
-            minutes.innerHTML = pad(parseInt( (time -hour*3600)/60)); 
-            seconds.innerHTML = pad(time % 60);
-            
-          },1000)
-        })
-        //play sound
-        let existsPend = document.getElementsByClassName("div-container circle-pend");
-        if (existsPend[0]) {
-          console.log("Pend Found, playing de sound...");
-          play_single_audio()
-        }
-      }
-      function pad(val) {
-        var valString = val + "";
-        if (valString.length < 2) {
-          return "0" + valString;
-        } else {
-          return valString;
-        }
-      }
     </script>
     <h1>Lista de Requisições</h1>
     <%
     data.filter((element) => {
       if (!element.checked) { %>
-        <form method="post" action="/checkReq/"<%=element.id%> >
+        <form method="post" action="/checkReq/">
           <div class="flex-container">
             <div class="div-container circle-pend"></div>
             <div class="div-container requerente">

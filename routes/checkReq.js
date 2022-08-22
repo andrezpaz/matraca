@@ -9,17 +9,19 @@ router.get('/', function (req, res, next) {
 })
 router.post('/', function (req, res){
   let id = req.body.idReq;
-  console.log(req.body);
+  let origin = req.headers.referer;
+  let dest = origin.includes('requester') ? origin:'/receiver'
+
   axios
   .put(`http://localhost:3000/api/v1/posts/${id}`, {
     checked: true
   })
   .then(posts =>{
-    res.redirect(`/receiver`);
+    res.redirect(dest);
   })
   .catch( error => {
     console.error(error)
-    res.redirect(`/receiver`);
+    res.redirect(dest);
   })
 });
 

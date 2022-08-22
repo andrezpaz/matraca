@@ -49,10 +49,12 @@ textarea {
   font-size: 40px;
 }
 
-.div-list-req-pend, .div-list-req-atend, .div-circle-atend, .div-circle-pend, .div-requester, .box-list-requester{
+.div-list-req-pend, .div-list-req-atend, .div-circle-atend, .div-circle-pend{
   display: inline-block;
 }
-
+.box-list-requester, .div-requester {
+  width: 50%;
+}
 .circle-pend, .div-circle-atend {
   width: 45px;
   height: 45px;
@@ -92,6 +94,39 @@ textarea {
   }
 }
 
+.flex-container-requester-main {
+  display: flex;
+  width: 100%;
+  flex-wrap:wrap;
+  
+}
+.flex-container-requester-main > .separator{
+  width: 100px;
+}
+
+.flex-container-requester-main > .div-requester, .box-list-requester{
+  width: 700px;
+}
+.flex-container-requester-list {
+  display: flex;
+  width: 100%;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.flex-container-requester-list > .div-container-requester {
+  margin: 10px;
+  padding: 5px;
+  font-size: 20px;
+}
+.flex-container-requester-list > .div-container-requester > .id {
+  align-self: flex-start;
+}
+.flex-container-requester-list > .msg {
+  width: 80%;
+  word-wrap: break-word;
+}
+
 .flex-container {
   display: flex;
   background-color: aliceblue;
@@ -101,6 +136,7 @@ textarea {
   align-items: center;
 
 }
+
 .flex-container > .div-container {
   margin: 10px;
   padding: 20px;

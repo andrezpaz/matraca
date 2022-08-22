@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lista de Requisições</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/client.js"></script>
+  </head>
+  <body onload="startCounter('requester')">
+    <h1>Interfone Online - Máquina <%= data.requester %></h1>
+    <div class="flex-container-requester-main">
+      <div class="div-requester">
+        <form class="form" method="post" action="/sendToReceiver">
+          <label class="form-req label-requester" for="requester">Solicitante:</label><br>
+          <input class="form-req input-requester" readonly="true" name="requester" type="text" id="requester" value="<%=data.requester%>"><br>
+          <label class="form-req label-requester" for="msgRequester">Mensagem:</label><br>
+          <textarea name="form-req msg" id="msgRequester" rows="3" cols="50"></textarea><br>
+          <input class="form-req input-button-requester" type="submit" value="Enviar">
+        </form>   
+      </div>
+      <div class="separator"></div>
+      <div class="box-list-requester">
+        <button onclick="javascript:window.location.reload()">Atualizar Lista</button>
+        <%- include('listReq', {data:data}) %>
+      </div>  
+    </div>
+    <br>
+  </body>
+</html>

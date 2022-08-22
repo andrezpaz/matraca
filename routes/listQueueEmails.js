@@ -8,7 +8,7 @@ router.get('/', async function(req, res, next) {
   axios
   .get('http://localhost:3000/api/v1/posts/emailQueue')
   .then(posts =>{
-    res.render('listQueueEmails', {data: posts.data, functions:functionsEjs});
+    res.render('pages/listQueueEmails', {data: posts.data, functions:functionsEjs});
   })
   .catch( error => {
     console.error(error)

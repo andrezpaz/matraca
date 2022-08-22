@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="h-100">
+  <head>
+    <%- include('../partials/head');%>
+    <title>Matraca - sistema de sugestoes online</title>
+  </head>
+
+  <body class="d-flex h-100 text-center text-bg-dark">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="mb-auto">
+      <%- include('../partials/header');%>
+  </header>
+  
+    <main class="px-3">
+
+      <h1>Sistema de Sugestões Online</h1>
+      <p class="lead"></p>
+    <div class="div-requester">
+      <form class="form-horizontal" method="post" action="/sendToQueue">
+        <label class="label-requester" for="requester">Setor de destino:</label><br>
+        <select class="input-requester dropdown-sector" name="destination">
+          <option value="qualidade">Qualidade</option>
+          <option value="impressao">Impressão</option>
+          <option value="extrusao">Extrusão</option>
+          <option value="rh">RH</option>
+          <option value="ti">Tecnologia da Informação</option>
+        </select><br>
+
+        
+
+
+      
+        
+
+        <label class="label-requester" for="msgRequester">Mensagem:</label><br>
+        <textarea name="msg" id="msgRequester" rows="3" cols="50"></textarea><br>
+        <input class="btn btn-lg btn-secondary fw-bold border-white bg-white" type="submit" value="Enviar">
+      </form>   
+    </div>
+    
+    </main>
+
+    
+    <footer class="mt-auto text-white-50">
+      <%- include('../partials/footer'); %>
+    </footer>
+</div>
+
+</body>
+</html>
