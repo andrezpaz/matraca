@@ -1,4 +1,6 @@
-<h2>Lista de Solicitações</h2>
+<div class="box-list-requester-title">
+  <h2>Lista de Solicitações</h2>
+</div>
 <% 
 let sortListChecked = data.listReq.sort(function (a, b) {
   if (new Date(a.id) < new Date(b.id)) {
@@ -16,13 +18,13 @@ sortListChecked.map((element) => {
   let dataAtend;
   let tempoAten;
   if (!element.checked) {
-    colorDiv = "#ffcccc";
+    colorDiv = "#fd6f6f";
   } else {
-    colorDiv = "#ccffcc";
+    colorDiv = "#64b964";
   } %>
   <form method="post" action="/checkReq">
     <div class="flex-container-requester-list" style="background-color: <%=colorDiv%>;">
-      <div class="div-container-requester msg">Mensagem: <%=element.msg%></div>
+      <div class="div-container-requester msg"><%=element.msg%></div>
       <div class="div-container-requester id"><input class="input-receiver" name="idReq" readonly="true" value="<%=element.id%>"></div>
       <div class="div-container-requester date">Data Solic.: <%=new Date(element.createdAt).toLocaleString('pt-BR')%></div>
       <% if (element.checked) {

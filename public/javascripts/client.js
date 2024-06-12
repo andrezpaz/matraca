@@ -59,6 +59,16 @@ function refreshPage(){
     window.location = window.location.href;
     }
 
+async function updateListReq() {
+      try {
+          const response = await fetch('/checkReq');
+          const text = await response.text();
+          document.getElementById('requesterListContent').innerHTML = text;
+      } catch (error) {
+          console.error('Erro ao atualizar a lista:', error);
+      }
+  }
+
 module.exports = {getTimeWait, calcBetweenTime};
 
 

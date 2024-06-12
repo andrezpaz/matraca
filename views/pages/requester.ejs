@@ -19,8 +19,13 @@
       </div>
       <div class="separator"></div>
       <div class="box-list-requester">
-        <button onclick="javascript:window.location.reload()">Atualizar Lista</button>
-        <%- include('listReq', {data:data}) %>
+        <div class="box-list-requester-buttonUpdate">
+          <button onclick="javascript:window.location.reload()">Atualizar Lista</button>
+        </div>
+        <div class="requesterListContent">
+          <%- include('listReq', {data:data}) %>
+        </div>
+        
       </div>
     </div>
     <br>
