@@ -37,6 +37,10 @@ a {
 .input-receiver {
   width: 30px
 }
+input[name="idReq"] {
+  width: 60px;
+}
+
 textarea {
   width: 660px;
 }
