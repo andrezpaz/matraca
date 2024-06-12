@@ -19,6 +19,7 @@ function startCounter(source) {
           insertTimeClock(time, hours, minutes, seconds)
         },1000)
       } else {
+        element.className.includes('no-counter') ? insertTimeClock(time, hours, minutes, seconds):
         interval = setInterval(function() {
           ++time;
           insertTimeClock(time, hours, minutes, seconds)

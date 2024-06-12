@@ -13,15 +13,15 @@
           <label class="form-req label-requester" for="requester">Solicitante:</label><br>
           <input class="form-req input-requester" readonly="true" name="requester" type="text" id="requester" value="<%=data.requester%>"><br>
           <label class="form-req label-requester" for="msgRequester">Mensagem:</label><br>
-          <textarea name="form-req msg" id="msgRequester" rows="3" cols="50"></textarea><br>
+          <textarea name="msg" id="msgRequester" rows="3" cols="50"></textarea><br>
           <input class="form-req input-button-requester" type="submit" value="Enviar">
-        </form>   
+        </form>
       </div>
       <div class="separator"></div>
       <div class="box-list-requester">
         <button onclick="javascript:window.location.reload()">Atualizar Lista</button>
         <%- include('listReq', {data:data}) %>
-      </div>  
+      </div>
     </div>
     <br>
   </body>

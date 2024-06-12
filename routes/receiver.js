@@ -8,6 +8,7 @@ router.get('/', async function(req, res, next) {
   axios
   .get('http://localhost:3000/api/v1/posts')
   .then(posts =>{
+    console.log(posts)
     res.render('pages/receiver', {data: posts.data, functions:functionsEjs});
   })
   .catch( error => {
