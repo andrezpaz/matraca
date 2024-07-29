@@ -18,6 +18,18 @@ function getPosts() {
     })
 }
 
+function getLatestPosts() {
+    return new Promise((resolve, reject) =>{
+        if (posts.length === 0) {
+            reject({
+                message: 'no posts available',
+                status: 202
+            })
+        }
+        resolve (posts.slice(-20))
+    })
+}
+
 function getPostsEmail() {
     return new Promise((resolve, reject) =>{
         if (postsEmail.length === 0) {
@@ -48,6 +60,19 @@ function getPostsRequester(requester) {
             })
         }
         resolve(postsRequester)
+        })
+}
+
+function getLatestPostsRequester(requester) {
+    return new Promise((resolve, reject) =>{
+        const postsRequester = posts.filter( r => r.requester == requester)
+        if (!postsRequester) {
+            reject({
+                message:'Not Foind',
+                status: 404
+            })
+        }
+        resolve(postsRequester.slice(-10))
         })
 }
 
@@ -143,5 +168,7 @@ module.exports = {
     updatePostChecked,
     insertPostEmail,
     getPostsEmail,
-    getPostsRequester
+    getPostsRequester,
+    getLatestPostsRequester,
+    getLatestPosts
 }
