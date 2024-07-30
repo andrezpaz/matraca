@@ -2,25 +2,28 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios');
 
-/* GET home page. */
-router.get('/', function (req, res, nex) {
-  res.send('d')
-})
-router.post('/', function (req, res){
-  let requester = req.body.requester;
-  let msg = req.body.msg;
-  axios
-  .post('http://localhost:3000/api/v1/posts', {
-    requester:requester,
-    msg: msg,
-    checked: false
-  })
-  .then(posts =>{
-    res.redirect(`/requester/${requester}`);
-  })
-  .catch( error => {
-    console.error(error)
-  })
+router.post('/', async (req, res) => {
+  try {
+    const { requester, msg } = req.body;
+
+    // Verificação de dados
+    if (!requester || !msg) {
+      return res.status(400).send('Requester and message are required.');
+    }
+
+    const response = await axios.post('http://localhost:3000/api/v1/posts', {
+      requester,
+      msg,
+      checked: false
+    });
+
+    //res.redirect(`/requester/${requester}`);
+    res.status(201).json({ message: 'Message sent successfully', data: response.data });
+  } catch (error) {
+    console.error(error);
+    // Enviar uma resposta de erro ao cliente
+    res.status(500).send('An error occurred while processing your request.');
+  }
 });
 
 module.exports = router;

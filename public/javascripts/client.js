@@ -69,7 +69,56 @@ async function updateListReq() {
       }
   }
 
+  function solicitarPermissaoSom() {
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioContext.state === 'suspended') {
+            audioContext.resume().then(() => {
+                console.log('Permissão de som concedida.');
+                fecharModal();
+            });
+        } else {
+            fecharModal();
+        }
+    } catch (e) {
+        console.error('Erro ao tentar acessar o contexto de áudio:', e);
+    }
+}
+
+function sendToReceiver(element) {
+  element.disabled = true;  // Desabilita o botão para evitar múltiplos cliques
+  const requester = document.getElementById('requester').value;
+  const msg = document.getElementById('msgRequester').value;
+
+  fetch('/sendToReceiver', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      requester: requester,
+      msg: msg
+    })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();  // Supondo que o servidor retorne JSON
+  })
+  .then(data => {
+    console.log(data);
+    // Aqui você pode adicionar lógica para lidar com a resposta do servidor
+    //alert('Mensagem enviada com sucesso!');
+    refreshPage()
+  })
+  .catch(error => {
+    console.error('There has been a problem with your fetch operation:', error);
+    alert('Erro ao enviar mensagem, tente novamente.');
+  })
+  .finally(() => {
+    element.disabled = false;  // Reabilita o botão
+  });
+}
+
 module.exports = {getTimeWait, calcBetweenTime};
-
-
-

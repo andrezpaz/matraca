@@ -9,12 +9,12 @@
     <h1>Interfone Online - Máquina <%= data.requester %></h1>
     <div class="flex-container-requester-main">
       <div class="div-requester">
-        <form class="form" method="post" action="/sendToReceiver">
+        <form class="form">
           <label class="form-req label-requester" for="requester">Solicitante:</label><br>
           <input class="form-req input-requester" readonly="true" name="requester" type="text" id="requester" value="<%=data.requester%>"><br>
           <label class="form-req label-requester" for="msgRequester">Mensagem:</label><br>
           <textarea name="msg" id="msgRequester" rows="3" cols="50"></textarea><br>
-          <input class="form-req input-button-requester" type="submit" value="Enviar">
+          <input class="form-req input-button-requester" type="submit" value="Enviar" onclick="sendToReceiver(this)">
         </form>
       </div>
       <div class="separator"></div>
